@@ -11,12 +11,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
-        return security
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth->auth.anyRequest()
-                                .authenticated()
-                ).oauth2Login(Customizer.withDefaults()).build();
-    }
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
+		return security.csrf(AbstractHttpConfigurer::disable)
+				.authorizeHttpRequests(auth -> auth
+						.requestMatchers("/welcome.html").permitAll() // Allow access to
+																									// welcome.html
+																									// without
+																									// authentication
+						.anyRequest().authenticated())
+				.oauth2Login(Customizer.withDefaults()).build();
+	}
 }

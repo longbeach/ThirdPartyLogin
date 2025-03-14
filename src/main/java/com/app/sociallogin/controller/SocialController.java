@@ -10,8 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/myapp")
 public class SocialController {
-    @GetMapping
+    /*
+	@GetMapping
     public ResponseEntity<String> welcome(){
         return new ResponseEntity<>("<center><h2>Welcome Durjoy</h2><center>", HttpStatus.OK);
+    }
+    */
+    
+    @GetMapping
+    public String welcome() {
+        return "redirect:/welcome.html";
     }
 }
